@@ -1,42 +1,76 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
-import "react-dropdown/style.css";
 import "./topbar.css";
 
 export default function Topbar() {
 	const { user, dispatch } = useContext(Context);
+	const [settingsDropdownOpen, setSettingsDropdownOpen] = useState(false);
 	const PF = "http://localhost:5000/images/";
 
 	const handleLogout = () => {
 		dispatch({ type: "LOGOUT" });
 	};
+	const handleToggle = () => {
+		setSettingsDropdownOpen((prev) => !prev);
+	};
+	const closeMenu = () => {
+		setSettingsDropdownOpen(false);
+	};
 
 	return (
 		<div className="top">
 			<div className="topLeft">
-				<Link className="link" to="/">
+				<Link className="topIcon" to="/">
 					<i class="fa-solid fa-house"></i>
 				</Link>
 			</div>
-
-			{user ? (
-				<div className="topCenter">
-					<Link className="link" to="/login" onClick={handleLogout}>
-						Logout
-					</Link>
-				</div>
-			) : (
-				<div className="topCenter"></div>
-			)}
-
+			<div className="topCenter"></div>
 			<div className="topRight">
 				{user ? (
-					<div className="topIcon">
-						<Link className="link" to="/settings">
-							<img className="topImg" src={PF + user.profilePic} alt="" />
-						</Link>
-					</div>
+					<>
+						<div className="topIcon">
+							<i className="topSearchIcon fas fa-search"></i>
+						</div>
+						<div className="topIcon">
+							<i class="fa-solid fa-gear" onClick={handleToggle}></i>
+							<div class="settingsDropdown">
+								<ul
+									className={`settingsDropdown ${
+										settingsDropdownOpen ? " showMenu" : ""
+									}`}
+								>
+									<li>
+										<Link
+											className="link"
+											to="/settings"
+											activeclassname="active-link"
+											onClick={closeMenu}
+											exact="true"
+										>
+											Settings
+										</Link>
+									</li>
+									<li>
+										<Link
+											className="link"
+											to="/login"
+											activeclassname="active-link"
+											onClick={(closeMenu, handleLogout)}
+											exact="true"
+										>
+											Logout
+										</Link>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div className="topIcon">
+							<Link className="link" to="/profile">
+								<img className="topImg" src={PF + user.profilePic} alt="" />
+							</Link>
+						</div>
+					</>
 				) : (
 					<ul className="topList">
 						<li className="topListItem">
@@ -51,12 +85,6 @@ export default function Topbar() {
 						</li>
 					</ul>
 				)}
-				<div className="topIcon">
-					<i className="topSearchIcon fas fa-search"></i>
-				</div>
-				<div className="topIcon">
-					<i class="fa-solid fa-gear"></i>
-				</div>
 			</div>
 		</div>
 	);

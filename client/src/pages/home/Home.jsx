@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Posts from "../../components/posts/Posts";
 import RightBar from "../../components/rightbar/RightBar";
+import LeftBar from "../../components/leftBar/LeftBar";
 import "./home.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -21,6 +22,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="home">
+				<LeftBar />
 				<Posts posts={posts} />
 				<RightBar />
 			</div>

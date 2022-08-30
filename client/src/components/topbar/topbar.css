@@ -17,15 +17,16 @@
 	display: flex;
 	padding-left: 20px;
 }
+
+.topCenter {
+	flex: 6;
+}
+
 .topRight {
 	flex: 3;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-}
-
-.topCenter {
-	flex: 6;
+	justify-content: right;
 }
 
 .topIcon {
@@ -58,9 +59,18 @@
 	cursor: pointer;
 }
 
-.searchIcon {
+.settingsDropdown {
+	position: absolute;
+	overflow: hidden;
+	display: hidden;
+}
+
+.settingsDropdown.showMenu {
+	list-style: none;
+	position: fixed;
+	background: rgb(27, 108, 161);
+	overflow: hidden;
+	text-align: left;
+	padding: 10px;
 	font-size: 18px;
-	color: #666;
-	cursor: pointer;
-	margin-left: 15px;
 }
