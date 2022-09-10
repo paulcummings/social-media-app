@@ -22,7 +22,7 @@ export default function Topbar() {
 		<div className="top">
 			<div className="topLeft">
 				<Link className="topIcon" to="/">
-					<i class="fa-solid fa-house"></i>
+					<i className="fa-solid fa-house"></i>
 				</Link>
 			</div>
 			<div className="topCenter"></div>
@@ -33,8 +33,8 @@ export default function Topbar() {
 							<i className="topSearchIcon fas fa-search"></i>
 						</div>
 						<div className="topIcon">
-							<i class="fa-solid fa-gear" onClick={handleToggle}></i>
-							<div class="settingsDropdown">
+							<i className="fa-solid fa-gear" onClick={handleToggle}></i>
+							<div className="settingsDropdown">
 								<ul
 									className={`settingsDropdown ${
 										settingsDropdownOpen ? " showMenu" : ""
