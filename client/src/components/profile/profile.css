@@ -1,0 +1,8 @@
+.profile {
+	display: flex;
+}
+
+.profileWrapper {
+	flex: 9;
+	padding: 20px;
+}
