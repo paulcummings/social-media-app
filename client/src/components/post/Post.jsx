@@ -16,11 +16,7 @@ function formatDate(date) {
 		"December",
 	];
 
-	const day = date.getDate();
-	const month = date.getMonth();
-	const year = date.getFullYear();
 	var hours = date.getHours();
-	const minutes = date.getMinutes();
 	var amOrPm = "AM";
 
 	// Convert to 12-hour clock
@@ -33,15 +29,15 @@ function formatDate(date) {
 	}
 
 	return (
-		monthNames[month] +
+		monthNames[date.getMonth()] +
 		" " +
-		day +
+		date.getDate() +
 		", " +
-		year +
+		date.getFullYear() +
 		" at " +
 		hours +
 		":" +
-		minutes +
+		date.getMinutes() +
 		" " +
 		amOrPm
 	);
@@ -51,12 +47,16 @@ export default function Post({ post }) {
 	const PF = "http://localhost:5000/images/";
 	return (
 		<div className="post">
-			<p>{post.username}</p>
-			{post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
-			<div className="postInfo">
-				<span className="postDate">{formatDate(new Date(post.createdAt))}</span>
+			<div className="postHeader">
+				<p>{post.username}</p>
+				{post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
+				<div className="postInfo">
+					<span className="postDate">
+						{formatDate(new Date(post.createdAt))}
+					</span>
+				</div>
+				<p className="postDesc">{post.desc}</p>
 			</div>
-			<p className="postDesc">{post.desc}</p>
 		</div>
 	);
 }
