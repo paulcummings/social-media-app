@@ -69,14 +69,9 @@ router.get("/:id", async (req, res) => {
 
 //GET ALL POSTS
 router.get("/", async (req, res) => {
-	const username = req.query.username;
 	try {
 		let posts;
-		if (username) {
-			posts = await Post.find({ username });
-		} else {
-			posts = await Post.find();
-		}
+		posts = await Post.find().sort({ createdAt: -1 });
 		res.status(200).json(posts);
 	} catch (err) {
 		res.status(500).json(err);

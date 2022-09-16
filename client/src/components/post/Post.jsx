@@ -49,12 +49,12 @@ export default function Post({ post }) {
 		<div className="post">
 			<div className="postHeader">
 				<p>{post.username}</p>
-				{post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
 				<div className="postInfo">
 					<span className="postDate">
 						{formatDate(new Date(post.createdAt))}
 					</span>
 				</div>
+				{post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
 				<p className="postDesc">{post.desc}</p>
 			</div>
 		</div>

@@ -25,8 +25,8 @@ export default function CreatePost() {
 			} catch (err) {}
 		}
 		try {
-			const res = await axios.post("/posts", newPost);
-			window.location.replace("/post/" + res.data._id);
+			await axios.post("/posts", newPost);
+			window.location.reload(false);
 		} catch (err) {}
 	};
 
