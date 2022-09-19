@@ -67,10 +67,14 @@
 
 .settingsDropdown.showMenu {
 	list-style: none;
-	position: fixed;
+	position: relative;
 	background: rgb(27, 108, 161);
 	overflow: hidden;
 	text-align: left;
 	padding: 10px;
 	font-size: 18px;
+}
+
+.settingsDropdown.showMenu :hover {
+	color: black;
 }

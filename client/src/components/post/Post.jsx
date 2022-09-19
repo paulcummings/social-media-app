@@ -1,4 +1,5 @@
 import "./post.css";
+import { useState } from "react";
 
 function formatDate(date) {
 	var monthNames = [
@@ -45,18 +46,36 @@ function formatDate(date) {
 
 export default function Post({ post }) {
 	const PF = "http://localhost:5000/images/";
+
+	const [postSettingsDropdownOpen, setPostSettingsDropdownOpen] =
+		useState(false);
+
+	const handleToggle = () => {
+		setPostSettingsDropdownOpen((prev) => !prev);
+	};
+
 	return (
 		<div className="post">
+			<div className="postSettingsIcon">
+				<i className="fa-solid fa-ellipsis-vertical" onClick={handleToggle}></i>
+				<div className="postSettingsDropdown">
+					<ul
+						className={`postSettingsDropdown ${
+							postSettingsDropdownOpen ? " showMenu" : ""
+						}`}
+					>
+						<li onClick={handleToggle}>Edit</li>
+						<li onClick={handleToggle}>Delete</li>
+					</ul>
+				</div>
+			</div>
 			<div className="postHeader">
 				<p>{post.username}</p>
-				<div className="postInfo">
-					<span className="postDate">
-						{formatDate(new Date(post.createdAt))}
-					</span>
-				</div>
-				{post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
-				<p className="postDesc">{post.desc}</p>
+				<span className="postDate">{formatDate(new Date(post.createdAt))}</span>
 			</div>
+
+			<p className="postDesc">{post.desc}</p>
+			{post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
 		</div>
 	);
 }

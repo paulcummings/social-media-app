@@ -36,7 +36,7 @@ export default function CreatePost() {
 				<img src={URL.createObjectURL(file)} alt="" className="postImg" />
 			)}
 			<form className="postForm" onSubmit={handleSubmit}>
-				<div className="postFormGroup">
+				<div>
 					<label htmlFor="fileInput">
 						<i className="postIcon fa-solid fa-plus"></i>
 					</label>
@@ -47,7 +47,7 @@ export default function CreatePost() {
 						onChange={(e) => setFile(e.target.files[0])}
 					/>
 				</div>
-				<div className="postFormGroup">
+				<div>
 					<textarea
 						placeholder="What's on your mind?"
 						type="text"

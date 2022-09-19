@@ -14,9 +14,6 @@ export default function Topbar() {
 	const handleToggle = () => {
 		setSettingsDropdownOpen((prev) => !prev);
 	};
-	const closeMenu = () => {
-		setSettingsDropdownOpen(false);
-	};
 
 	return (
 		<div className="top">
@@ -45,7 +42,7 @@ export default function Topbar() {
 											className="link"
 											to="/settings"
 											activeclassname="active-link"
-											onClick={closeMenu}
+											onClick={handleToggle}
 											exact="true"
 										>
 											Settings
@@ -56,7 +53,7 @@ export default function Topbar() {
 											className="link"
 											to="/login"
 											activeclassname="active-link"
-											onClick={(closeMenu, handleLogout)}
+											onClick={(handleToggle, handleLogout)}
 											exact="true"
 										>
 											Logout
