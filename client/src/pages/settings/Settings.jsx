@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import "./settings.css";
 import axios from "axios";
-import RightBar from "../../components/rightbar/RightBar";
+import RightBar from "../../components/rightBar/RightBar";
+import LeftBar from "../../components/leftBar/LeftBar";
 
 export default function Settings() {
 	const { user, dispatch } = useContext(Context);
@@ -43,22 +44,19 @@ export default function Settings() {
 
 	return (
 		<div className="settings">
+			<LeftBar />
 			<div className="settingsWrapper">
-				<div className="settingsTitle"></div>
 				<form className="settingsForm" onSubmit={handleSubmit}>
-					<label>Profile Picture</label>
 					<div className="settingsPP">
-						<img
-							src={file ? URL.createObjectURL(file) : PF + user.profilePic}
-							alt=""
-						/>
-						<label htmlFor="fileInput">
-							<i className="settingsPPIcon fa-solid fa-user"></i>
+						<label htmlFor="fileInput" className="settingsPP">
+							<img
+								src={file ? URL.createObjectURL(file) : PF + user.profilePic}
+								alt=""
+							/>
 						</label>
 						<input
 							type="file"
 							id="fileInput"
-							style={{ display: "none" }}
 							onChange={(e) => setFile(e.target.files[0])}
 						/>
 					</div>

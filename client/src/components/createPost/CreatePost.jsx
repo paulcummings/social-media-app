@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import "./createPost.css";
 import axios from "axios";
 import { Context } from "../../context/Context";
+import { Link } from "react-router-dom";
 
 export default function CreatePost() {
 	const [desc, setDesc] = useState("");
 	const [file, setFile] = useState(null);
 	const { user } = useContext(Context);
+	const PF = "http://localhost:5000/images/";
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -32,22 +34,13 @@ export default function CreatePost() {
 
 	return (
 		<div className="createPost">
-			{file && (
-				<img src={URL.createObjectURL(file)} alt="" className="postImg" />
-			)}
 			<form className="postForm" onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor="fileInput">
-						<i className="postIcon fa-solid fa-plus"></i>
-					</label>
-					<input
-						type="file"
-						id="fileInput"
-						style={{ display: "none" }}
-						onChange={(e) => setFile(e.target.files[0])}
-					/>
+				<div className="postFormGroup">
+					<Link className="link" to="/profile">
+						<img className="profilePic" src={PF + user.profilePic} alt="" />
+					</Link>
 				</div>
-				<div>
+				<div className="postFormGroup">
 					<textarea
 						placeholder="What's on your mind?"
 						type="text"
@@ -55,6 +48,19 @@ export default function CreatePost() {
 						onChange={(e) => setDesc(e.target.value)}
 					></textarea>
 				</div>
+				<div className="postFormGroup">
+					<label htmlFor="fileInput">
+						<i className="postIcon fa-solid fa-plus"></i>
+					</label>
+					<input
+						type="file"
+						id="fileInput"
+						onChange={(e) => setFile(e.target.files[0])}
+					/>
+				</div>
+				{file && (
+					<img src={URL.createObjectURL(file)} alt="" className="postImg" />
+				)}
 				<button className="postSubmit" type="submit">
 					Post
 				</button>

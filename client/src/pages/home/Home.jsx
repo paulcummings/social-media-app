@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Posts from "../../components/posts/Posts";
-import RightBar from "../../components/rightbar/RightBar";
+import RightBar from "../../components/rightBar/RightBar";
 import LeftBar from "../../components/leftBar/LeftBar";
 import "./home.css";
 import axios from "axios";
