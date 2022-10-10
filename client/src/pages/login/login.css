@@ -18,7 +18,7 @@
 	flex-direction: column;
 }
 
-.loginForm > label {
+.loginForm>label {
 	margin: 10px 0;
 }
 
@@ -46,5 +46,5 @@
 
 .loginButton:disabled {
 	cursor: not-allowed;
-	background-color: rgb(252, 173, 173);
+	background-color: rgb(55, 160, 192);
 }

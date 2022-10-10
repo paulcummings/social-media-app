@@ -18,7 +18,7 @@
 	flex-direction: column;
 }
 
-.registerForm > label {
+.registerForm>label {
 	margin: 10px 0;
 }
 
@@ -42,4 +42,9 @@
 	border: none;
 	border-radius: 10px;
 	text-align: center;
+}
+
+.registerError {
+	color: red;
+	margin-top: 10px;
 }

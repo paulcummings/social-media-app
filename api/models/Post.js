@@ -2,17 +2,21 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema(
 	{
+		userId: {
+			type: String,
+			required: true,
+		},
 		desc: {
 			type: String,
 			required: true,
+			max: 500,
 		},
 		photo: {
 			type: String,
-			required: false,
 		},
-		username: {
-			type: String,
-			required: true,
+		likes: {
+			type: Array,
+			default: [],
 		},
 	},
 	{ timestamps: true }

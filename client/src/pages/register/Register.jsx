@@ -3,7 +3,9 @@ import "./register.css";
 import axios from "axios";
 
 export default function Register() {
-	const [username, setUsername] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [dob, setDob] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(false);
@@ -13,8 +15,10 @@ export default function Register() {
 		setError(false);
 		try {
 			const res = await axios.post("/auth/register", {
-				username,
+				firstName,
+				lastName,
 				email,
+				dob,
 				password,
 			});
 			res.data && window.location.replace("/login");
@@ -27,12 +31,26 @@ export default function Register() {
 		<div className="register">
 			<span className="registerTitle">Register</span>
 			<form className="registerForm" onSubmit={handleSubmit}>
-				<label>Username</label>
+				<label>First Name</label>
 				<input
 					type="text"
 					className="registerInput"
 					placeholder=""
-					onChange={(e) => setUsername(e.target.value)}
+					onChange={(e) => setFirstName(e.target.value)}
+				/>
+				<label>Last Name</label>
+				<input
+					type="text"
+					className="registerInput"
+					placeholder=""
+					onChange={(e) => setLastName(e.target.value)}
+				/>
+				<label>Date of Birth</label>
+				<input
+					type="date"
+					className="registerInput"
+					placeholder=""
+					onChange={(e) => setDob(e.target.value)}
 				/>
 				<label>Email</label>
 				<input
@@ -52,11 +70,7 @@ export default function Register() {
 					Register
 				</button>
 			</form>
-			{error && (
-				<span style={{ color: "red", marginTop: "10px" }}>
-					Something went wrong
-				</span>
-			)}
+			{error && <span className="registerError">Something went wrong</span>}
 		</div>
 	);
 }

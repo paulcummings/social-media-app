@@ -42,9 +42,9 @@ export default function CreatePost() {
 				</div>
 				<div className="postFormGroup">
 					<textarea
+						className="postInput"
 						placeholder="What's on your mind?"
 						type="text"
-						className="postInput postText"
 						onChange={(e) => setDesc(e.target.value)}
 					></textarea>
 				</div>

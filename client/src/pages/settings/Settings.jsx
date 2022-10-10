@@ -8,7 +8,6 @@ import LeftBar from "../../components/leftBar/LeftBar";
 export default function Settings() {
 	const { user, dispatch } = useContext(Context);
 	const [file, setFile] = useState(null);
-	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [success, setSuccess] = useState(false);
@@ -19,7 +18,6 @@ export default function Settings() {
 		dispatch({ type: "UPDATE_START" });
 		const updatedUser = {
 			userId: user._id,
-			username,
 			email,
 			password,
 		};
@@ -60,12 +58,6 @@ export default function Settings() {
 							onChange={(e) => setFile(e.target.files[0])}
 						/>
 					</div>
-					<label>Username</label>
-					<input
-						type="text"
-						placeholder={user.username}
-						onChange={(e) => setUsername(e.target.value)}
-					/>
 					<label>Email</label>
 					<input
 						type="email"

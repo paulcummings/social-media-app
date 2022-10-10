@@ -7,8 +7,11 @@ router.post("/register", async (req, res) => {
 	try {
 		const salt = await bcrypt.genSalt(10);
 		const hashedPass = await bcrypt.hash(req.body.password, salt);
+
 		const newUser = new User({
-			username: req.body.username,
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			dob: req.body.dob,
 			email: req.body.email,
 			password: hashedPass,
 		});
@@ -22,13 +25,14 @@ router.post("/register", async (req, res) => {
 
 //LOGIN
 router.post("/login", async (req, res) => {
+	// TODO
+	// Crashes when both are invalid
 	try {
-		// TODO: Fix error checking
-		const user = await User.findOne({ username: req.body.username });
-		//!user && res.status(400).json("Wrong credentials");
+		const user = await User.findOne({ email: req.body.email });
+		!user && res.status(400).json("Incorrect Email or Password");
 
-		const validated = await bcrypt.compare(req.body.password, user.password);
-		//!validated && res.status(400).json("Wrong credentials");
+		const validPass = await bcrypt.compare(req.body.password, user.password);
+		!validPass && res.status(400).json("Incorrect Email or Password");
 
 		const { password, ...others } = user._doc;
 		res.status(200).json(others);
